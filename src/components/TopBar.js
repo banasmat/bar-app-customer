@@ -6,6 +6,9 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import {
+    NavLink ,
+} from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -28,10 +31,11 @@ export default function TopBar() {
         <div className={classes.root}>
             <AppBar position="static" className={classes.bar}>
                 <Toolbar>
-
-                    <Typography variant="h6" className={classes.title}>
-                        Bar App
-                    </Typography>
+                    <NavLink to="/" className={classes.title}>
+                        <Typography variant="h6">
+                            Bar App
+                        </Typography>
+                    </NavLink>
                     {/*<Button color="inherit">Login</Button>*/}
                     <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                         <MenuIcon />

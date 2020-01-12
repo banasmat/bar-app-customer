@@ -14,7 +14,12 @@ const useStyles = makeStyles(theme => ({
         width: '100%',
         maxWidth: 360,
         backgroundColor: theme.palette.background.paper,
-    }
+        position: 'absolute',
+        zIndex: 100,
+    },
+    listItemTitle: {
+        display: "block"
+    },
 }));
 
 const mapStateToProps = state => {
@@ -29,30 +34,29 @@ const SearchResults = ({ places }) => {
         <List className={classes.root}>
             {places.map((place, i) => {
                 return (<ListItem key={i} alignItems="flex-start">
-                        <ListItemAvatar>
-                            <Avatar alt={place.name} src={place.imgUrl} />
-                        </ListItemAvatar>
-                        <ListItemText
-                            primary={place.name}
-                            secondary={
-                                <React.Fragment>
-                                    <Typography
-                                        component="h5"
-                                        variant="body2"
-                                        color="textPrimary"
-                                    >
-                                        {place.name}
-                                    </Typography>
-                                    {place.address}
-                                </React.Fragment>
-                            }
-                        />
-                        <Divider variant="inset" component="li" />
-                    </ListItem>
-
+                            <ListItemAvatar>
+                                <Avatar alt={place.name} src={place.imgUrl} />
+                            </ListItemAvatar>
+                            <ListItemText
+                                primary={place.name}
+                                secondary={
+                                    <React.Fragment>
+                                        <Typography
+                                            component="span"
+                                            variant="body2"
+                                            color="textPrimary"
+                                            className={classes.listItemTitle}
+                                        >
+                                            {place.name}
+                                        </Typography>
+                                        {place.address}
+                                    </React.Fragment>
+                                }
+                            />
+                            <Divider variant="inset" component="li" />
+                        </ListItem>
                     )
             })}
-
         </List>
     );
 };
