@@ -1,9 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
+import { connect } from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import IconButton from '@material-ui/core/IconButton';
+import { getPlacesData } from "../../actions/index";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -20,8 +22,11 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
+const Search = ({ getPlacesData }) => {
 
-export default function Search(props){
+    const handleInputChange = (e) => {
+        getPlacesData(e.currentTarget.value);
+    };
 
     const classes = useStyles();
 
@@ -31,11 +36,13 @@ export default function Search(props){
                 className={classes.input}
                 placeholder="Wpisz nazwę lokalu"
                 inputProps={{'aria-label': 'Wpisz nazwę lokalu'}}
+                onChange={handleInputChange}
             />
             <IconButton type="submit" className={classes.iconButton} aria-label="search">
                 <SearchIcon/>
             </IconButton>
-
         </Paper>
     );
-}
+};
+
+export default connect(null, { getPlacesData })(Search);

@@ -1,20 +1,14 @@
-import { ADD_ARTICLE, DATA_LOADED } from "../constants/action-types";
+import { PLACES_DATA_LOADED } from "../constants/action-types";
 
 const initialState = {
     articles: [],
-    remoteArticles: []
+    remotePlaces: []
 };
 
 function rootReducer(state = initialState, action) {
-    if (action.type === ADD_ARTICLE) {
+    if (action.type === PLACES_DATA_LOADED) {
         return Object.assign({}, state, {
-            articles: state.articles.concat(action.payload)
-        });
-    }
-
-    if (action.type === DATA_LOADED) {
-        return Object.assign({}, state, {
-            remoteArticles: state.remoteArticles.concat(action.payload)
+            remotePlaces: state.remotePlaces.concat(action.payload)
         });
     }
 

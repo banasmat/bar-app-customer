@@ -5,6 +5,7 @@ import Geolocate from './Geolocate';
 import TopBar from './../TopBar';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
+import SearchResults from "./SearchResults";
 
 const useStyles = makeStyles(theme => ({
     banner: {
@@ -36,6 +37,7 @@ function Home(props){
                         </Typography>
                     </Box>
                     <Search />
+                    <SearchResults />
                     <Box my={4}>
                         <Typography variant="h5" gutterBottom>
                             LUB
