@@ -1,8 +1,8 @@
 import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
+import Box from '@material-ui/core/Box';
 import Link from '@material-ui/core/Link';
-import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import PlaceIcon from '@material-ui/icons/Place';
 
 const useStyles = makeStyles(theme => ({
@@ -10,12 +10,12 @@ const useStyles = makeStyles(theme => ({
         padding: '2px 4px',
         display: 'flex',
         alignItems: 'center',
+        textAlign: 'center'
     },
-    input: {
-        marginLeft: theme.spacing(1),
-        flex: 1,
+    button: {
+        width: '100%',
     },
-    iconButton: {
+    icon: {
         padding: 10,
     },
 }));
@@ -26,20 +26,16 @@ export default function Geolocate(props){
     const classes = useStyles();
 
     return (
-        <Paper variant="outlined" className={classes.root}>
-            <IconButton type="submit" className={classes.iconButton} aria-label="geolocate">
-                <PlaceIcon/>
-            </IconButton>
-            <Link
-                component="button"
-                variant="body2"
-                onClick={() => {
-                    console.info("I'm a button.");
-                }}
+        <Box className={classes.root}>
+            <Button
+                variant="outlined"
+                color="white"
+                className={classes.button}
             >
+                <PlaceIcon className={classes.icon}/>
                 Zlokalizuj mnie
-            </Link>
+            </Button>
 
-        </Paper>
+        </Box>
     );
 }
