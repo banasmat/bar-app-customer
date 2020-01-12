@@ -8,7 +8,7 @@ const initialState = {
 function rootReducer(state = initialState, action) {
     if (action.type === PLACES_DATA_LOADED) {
         return Object.assign({}, state, {
-            remotePlaces: state.remotePlaces.concat(action.payload)
+            remotePlaces: state.remotePlaces = action.payload
         });
     }
 

@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Drink Bar",
+    "address": "ul. Marszałkowska 1, 01-000 Warszawa",
+    "category": "bar",
+    "imgUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRosGYfJzKSm7wjTDd5JcRTJa6DI751qdfCpot83FdVBHAGoWs3&s"
+  },
+  {
+    "id": 2,
+    "name": "Drink Bar",
+    "address": "ul. Marszałkowska 1, 01-000 Warszawa",
+    "category": "bar",
+    "imgUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRosGYfJzKSm7wjTDd5JcRTJa6DI751qdfCpot83FdVBHAGoWs3&s"
+  },
+  {
+    "id": 3,
+    "name": "Drink Bar",
+    "address": "ul. Marszałkowska 1, 01-000 Warszawa",
+    "category": "bar",
+    "imgUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRosGYfJzKSm7wjTDd5JcRTJa6DI751qdfCpot83FdVBHAGoWs3&s"
+  }
+]

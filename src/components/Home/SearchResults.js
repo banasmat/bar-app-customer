@@ -14,10 +14,7 @@ const useStyles = makeStyles(theme => ({
         width: '100%',
         maxWidth: 360,
         backgroundColor: theme.palette.background.paper,
-    },
-    inline: {
-        display: 'inline',
-    },
+    }
 }));
 
 const mapStateToProps = state => {
@@ -26,7 +23,6 @@ const mapStateToProps = state => {
 
 const SearchResults = ({ places }) => {
 
-console.log(places);
     const classes = useStyles();
 
     return (
@@ -34,21 +30,20 @@ console.log(places);
             {places.map((place, i) => {
                 return (<ListItem key={i} alignItems="flex-start">
                         <ListItemAvatar>
-                            <Avatar alt={place.title} src="/static/images/avatar/1.jpg" />
+                            <Avatar alt={place.name} src={place.imgUrl} />
                         </ListItemAvatar>
                         <ListItemText
-                            primary={place.title}
+                            primary={place.name}
                             secondary={
                                 <React.Fragment>
                                     <Typography
-                                        component="span"
+                                        component="h5"
                                         variant="body2"
-                                        className={classes.inline}
                                         color="textPrimary"
                                     >
-                                        place.title
+                                        {place.name}
                                     </Typography>
-                                    {place.body}
+                                    {place.address}
                                 </React.Fragment>
                             }
                         />
