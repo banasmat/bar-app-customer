@@ -5,9 +5,9 @@ import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import IconButton from '@material-ui/core/IconButton';
-import { getPlacesData } from "../../actions/index";
+import { getPlacesData } from "../actions/index";
 import { useHistory } from "react-router-dom";
-import {PLACES_DATA_LOADED} from "../../constants/action-types";
+import {PLACES_DATA_LOADED} from "../constants/action-types";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const Search = ({ getPlacesData }) => {
+const PlaceSearchForm = ({ getPlacesData }) => {
 
     const history = useHistory();
     const [searchValue, setSearchValue] = useState('');
@@ -61,4 +61,4 @@ const Search = ({ getPlacesData }) => {
     );
 };
 
-export default connect(null, { getPlacesData })(Search);
+export default connect(null, { getPlacesData })(PlaceSearchForm);

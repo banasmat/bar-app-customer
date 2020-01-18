@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-export default function Geolocate(props){
+export default function PlaceGeolocate(props){
 
     const classes = useStyles();
 

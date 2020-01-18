@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
 import { getPlacesData } from "../actions/index";
 import Box from "@material-ui/core/Box";
-import SearchResults from "./Home/SearchResults";
+import PlaceSearchResults from "./PlaceSearchResults";
 import {
     useParams
 } from "react-router-dom";
@@ -36,7 +36,7 @@ const Places = ({ getPlacesData }) => {
     return (
         <section className={classes.banner}>
             <Box p={4} pb={10}>
-                <SearchResults />
+                <PlaceSearchResults />
             </Box>
         </section>
     );

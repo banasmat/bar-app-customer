@@ -1,12 +1,12 @@
 import React, {useEffect} from "react";
 import { makeStyles } from '@material-ui/core/styles';
-import Search from './Search';
-import Geolocate from './Geolocate';
+import PlaceSearchForm from './PlaceSearchForm';
+import PlaceGeolocate from './PlaceGeolocate';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import SearchResults from "./SearchResults";
-import {getPlacesData} from "../../actions";
-import {PLACES_DATA_LOADED} from "../../constants/action-types";
+import PlaceSearchResults from "./PlaceSearchResults";
+import {getPlacesData} from "../actions";
+import {PLACES_DATA_LOADED} from "../constants/action-types";
 import {connect} from "react-redux";
 
 const useStyles = makeStyles(theme => ({
@@ -50,16 +50,16 @@ function Home({ clearPlacesData }){
                         ZNAJDŹ LOKAL
                     </Typography>
                 </Box>
-                <Search />
+                <PlaceSearchForm />
                 <div className={classes.searchResultsWrapper}>
-                    <SearchResults className={classes.searchResults} />
+                    <PlaceSearchResults />
                 </div>
                 <Box my={4}>
                     <Typography variant="h5" gutterBottom>
                         LUB
                     </Typography>
                 </Box>
-                <Geolocate />
+                <PlaceGeolocate />
             </Box>
         </section>
     );

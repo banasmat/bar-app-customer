@@ -26,7 +26,7 @@ const mapStateToProps = state => {
     return { places: state.remotePlaces.slice(0, 10) };
 };
 
-const SearchResults = ({ places }) => {
+const PlaceSearchResults = ({ places }) => {
 
     const classes = useStyles();
 
@@ -61,4 +61,4 @@ const SearchResults = ({ places }) => {
     );
 };
 
-export default connect(mapStateToProps)(SearchResults);
+export default connect(mapStateToProps)(PlaceSearchResults);
