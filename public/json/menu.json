@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Piwo 0,5",
+    "price": 800,
+    "imgUrl": "https://pbs.twimg.com/profile_images/692310978579599361/nsHPRTcr_400x400.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Piwo 0,3",
+    "price": 700,
+    "imgUrl": "https://pbs.twimg.com/profile_images/692310978579599361/nsHPRTcr_400x400.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Kawa",
+    "price": 800,
+    "imgUrl": "https://pbs.twimg.com/profile_images/692310978579599361/nsHPRTcr_400x400.jpg"
+  }
+]

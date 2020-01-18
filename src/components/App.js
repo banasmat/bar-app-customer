@@ -7,6 +7,7 @@ import {
 import TopBar from "./TopBar";
 import Home from '../components/Home';
 import Places from "./Places";
+import Menu from "./Menu";
 
 const App = () => (
     <Router>
@@ -14,6 +15,9 @@ const App = () => (
         <Switch>
             <Route path="/lokale/:searchValue">
                 <Places />
+            </Route>
+            <Route path="/menu/:placeId">
+                <Menu />
             </Route>
             <Route path="/">
                 <Home />

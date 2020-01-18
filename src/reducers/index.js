@@ -1,14 +1,19 @@
-import { PLACES_DATA_LOADED } from "../constants/action-types";
+import { PLACES_DATA_LOADED, MENU_DATA_LOADED } from "../constants/action-types";
 
 const initialState = {
-    articles: [],
-    remotePlaces: []
+    remotePlaces: [],
+    remoteMenuItems: [],
 };
 
 function rootReducer(state = initialState, action) {
     if (action.type === PLACES_DATA_LOADED) {
         return Object.assign({}, state, {
             remotePlaces: state.remotePlaces = action.payload
+        });
+    }
+    if (action.type === MENU_DATA_LOADED) {
+        return Object.assign({}, state, {
+            remoteMenuItems: state.remoteMenuItems = action.payload
         });
     }
 
