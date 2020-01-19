@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -11,11 +11,8 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import NumericInput from 'react-numeric-input';
-import Fab from '@material-ui/core/Fab';
-import FormLabel from '@material-ui/core/FormLabel';
-import Grid from '@material-ui/core/Grid';
 import { connect } from "react-redux";
+import MenuItemPanel from "./MenuItemPanel";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -26,15 +23,6 @@ const useStyles = makeStyles(theme => ({
         zIndex: 100,
     },
     listItemTitle: {
-        display: "block"
-    },
-    expandablePanel: {
-        flexGrow: 1,
-    },
-    amountInput: {
-        display: "block"
-    },
-    amountInputLabel: {
         display: "block"
     },
 }));
@@ -58,7 +46,7 @@ const MenuList = ({ menuItems }) => {
                                     id="panel1a-header"
                                 >
                                     <ListItemAvatar>
-                                        <Avatar alt={menuItem.name} src={menuItem.imgUrl} />
+                                        <Avatar alt={menuItem.name} />
                                     </ListItemAvatar>
                                     <ListItemText
                                         primary={menuItem.name}
@@ -79,37 +67,7 @@ const MenuList = ({ menuItems }) => {
                                 </ExpansionPanelSummary>
                                 <Divider />
                                 <ExpansionPanelDetails>
-                                    <Grid
-                                        container
-                                      spacing={2}
-                                      className={classes.expandablePanel}
-                                      justify="space-between"
-                                    >
-                                        <Grid item xs={4}>
-                                            <FormLabel className={classes.amountInputLabel}>
-                                                Ilość
-                                            </FormLabel>
-                                            <NumericInput
-                                                mobile
-                                                className={classes.amountInput}
-                                                step={ 1 }
-                                                min={ 1 }
-                                                precision={ 0 }
-                                                value={ 1 }
-                                                size={ 1 }
-                                            />
-                                        </Grid>
-                                        <Grid item xs={6}>
-                                            <Fab
-                                                variant="extended"
-                                                color="primary"
-                                                aria-label="add"
-                                                className={classes.margin}
-                                            >
-                                                Dodaj do zamówienia
-                                            </Fab>
-                                        </Grid>
-                                    </Grid>
+                                    <MenuItemPanel menuItem={menuItem}/>
                                 </ExpansionPanelDetails>
                             </ExpansionPanel>
                         </ListItem>
