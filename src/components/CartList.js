@@ -1,34 +1,26 @@
 import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import Divider from '@material-ui/core/Divider';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { connect } from "react-redux";
-import MenuItemPanel from "./MenuItemPanel";
 
 const useStyles = makeStyles(theme => ({
-    root: {
-        width: '100%',
-        maxWidth: 360,
-        backgroundColor: theme.palette.background.paper,
-        position: 'absolute',
-        zIndex: 100,
+    table: {
+        borderCollapse: 'initial',
     },
-    listItemTitle: {
-        display: "block"
+    lastTableRow: {
+        borderTop: '1px solid #797979',
     },
 }));
 
 const mapStateToProps = state => {
-    return { cart: state.remotecart };
+    return { cart: state.cart };
 };
 
 const CartList = ({ cart }) => {
@@ -36,44 +28,23 @@ const CartList = ({ cart }) => {
     const classes = useStyles();
 
     return (
-        <List className={classes.root}>
-            {/*{cart.items.map((cartItem) => {*/}
-            {/*    return (<ListItem key={cartItem.id} alignItems="flex-start">*/}
-            {/*                <ExpansionPanel>*/}
-            {/*                    <ExpansionPanelSummary*/}
-            {/*                        expandIcon={<ExpandMoreIcon />}*/}
-            {/*                        aria-controls="panel1a-content"*/}
-            {/*                        id="panel1a-header"*/}
-            {/*                    >*/}
-            {/*                        <ListItemAvatar>*/}
-            {/*                            <Avatar alt={cartItem.name} />*/}
-            {/*                        </ListItemAvatar>*/}
-            {/*                        <ListItemText*/}
-            {/*                            primary={cartItem.name}*/}
-            {/*                            secondary={*/}
-            {/*                                <React.Fragment>*/}
-            {/*                                    <Typography*/}
-            {/*                                        component="span"*/}
-            {/*                                        variant="body2"*/}
-            {/*                                        color="textPrimary"*/}
-            {/*                                        className={classes.listItemTitle}*/}
-            {/*                                    >*/}
-            {/*                                        {cartItem.name}*/}
-            {/*                                    </Typography>*/}
-            {/*                                    {cartItem.price/100} zł*/}
-            {/*                                </React.Fragment>*/}
-            {/*                            }*/}
-            {/*                        />*/}
-            {/*                    </ExpansionPanelSummary>*/}
-            {/*                    <Divider />*/}
-            {/*                    <ExpansionPanelDetails>*/}
-            {/*                        <MenuItemPanel menuItem={cartItem}/>*/}
-            {/*                    </ExpansionPanelDetails>*/}
-            {/*                </ExpansionPanel>*/}
-            {/*            </ListItem>*/}
-            {/*        )*/}
-            {/*})}*/}
-        </List>
+        <TableContainer component={Paper}>
+            <Table className={classes.table} aria-label="simple table">
+                <TableBody>
+                    {Object.values(cart.items).map((cartItem) => (
+                        <TableRow key={cartItem.menuItem.id}>
+                            <TableCell align="left">{cartItem.menuItem.name}</TableCell>
+                            <TableCell align="right">x{cartItem.count}</TableCell>
+                            <TableCell align="right">{cartItem.menuItem.price/100} zł</TableCell>
+                        </TableRow>
+                    ))}
+                    <TableRow>
+                        <TableCell  className={classes.lastTableRow} align="right" colSpan={2}>Razem:</TableCell>
+                        <TableCell  className={classes.lastTableRow} align="right">{cart.price / 100} zł</TableCell>
+                    </TableRow>
+                </TableBody>
+            </Table>
+        </TableContainer>
     );
 };
 
