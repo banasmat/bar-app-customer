@@ -1,4 +1,4 @@
-import { PLACES_DATA_LOADED, MENU_DATA_LOADED, ADD_TO_CART } from "../constants/action-types";
+import { PLACES_DATA_LOADED, MENU_DATA_LOADED, ADD_CART_ITEM } from "../constants/action-types";
 import { API_PLACES, API_MENU } from "../constants/urls";
 
 export function getPlacesData(searchValue) {
@@ -21,11 +21,10 @@ export function getMenuData(placeId) {
     };
 }
 
-export function addToCart(placeId, menuItemId, count) {
+export function addToCart(menuItem, count) {
     return function(dispatch) {
-        return dispatch({ type: ADD_TO_CART, payload: {
-            placeId: placeId,
-            menuItemId: menuItemId,
+        return dispatch({ type: ADD_CART_ITEM, payload: {
+            menuItem: menuItem,
             count: count
         } });
     };

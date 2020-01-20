@@ -29,7 +29,7 @@ const MenuItemPanel = ({ menuItem, addToCart }) => {
     const [menuItemCount, setMenuItemCount] = useState(1);
 
     function handleAddToCartClick(e) {
-        addToCart(menuItem.placeId, menuItem.id, menuItemCount)
+        addToCart(menuItem, menuItemCount)
     }
 
     function handleCountInputChange(e) {

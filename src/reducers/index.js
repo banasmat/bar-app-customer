@@ -1,9 +1,12 @@
-import { PLACES_DATA_LOADED, MENU_DATA_LOADED, ADD_TO_CART } from "../constants/action-types";
+import { PLACES_DATA_LOADED, MENU_DATA_LOADED, ADD_CART_ITEM } from "../constants/action-types";
 
 const initialState = {
     remotePlaces: [],
     remoteMenuItems: [],
-    cart: [],
+    cart: {
+        items: [],
+        price: 0
+    },
 };
 
 function rootReducer(state = initialState, action) {
@@ -19,18 +22,27 @@ function rootReducer(state = initialState, action) {
             remoteMenuItems: state.remoteMenuItems = action.payload
         }
     }
-    if (action.type === ADD_TO_CART) {
+    if (action.type === ADD_CART_ITEM) {
         // Increment count if menuItem is already in cart
-        let cart = state.cart;
+        let cartItems = {...state.cart.items};
         let newCartItem = action.payload;
-        if(newCartItem.menuItemId in state.cart){
-            newCartItem.count += cart[newCartItem.menuItemId].count;
+        if(newCartItem.menuItem.id in state.cart.items){
+            newCartItem.count += cartItems[newCartItem.menuItem.id].count;
         }
-        cart[newCartItem.menuItemId] = newCartItem;
+        cartItems[newCartItem.menuItem.id] = newCartItem;
 
         return {
             ...state,
-            cart: cart
+            cart: {
+                ...state.cart,
+                items: {
+                    ...state.cart.items,
+                    [newCartItem.menuItem.id]: newCartItem
+                },
+                price: Object.values(cartItems).reduce((prev, curr) => {
+                    return prev + curr.menuItem.price * curr.count;
+                }, 0)
+            }
         }
     }
 

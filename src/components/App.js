@@ -8,6 +8,7 @@ import TopBar from "./TopBar";
 import Home from '../components/Home';
 import Places from "./Places";
 import Menu from "./Menu";
+import Cart from "./Cart";
 
 const App = () => (
     <Router>
@@ -18,6 +19,9 @@ const App = () => (
             </Route>
             <Route path="/menu/:placeId">
                 <Menu />
+            </Route>
+            <Route path="/cart">
+                <Cart />
             </Route>
             <Route path="/">
                 <Home />
