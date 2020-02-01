@@ -17,9 +17,8 @@ import MenuItemPanel from "./MenuItemPanel";
 const useStyles = makeStyles(theme => ({
     root: {
         width: '100%',
-        maxWidth: 360,
+        maxWidth: '100%',
         backgroundColor: theme.palette.background.paper,
-        position: 'absolute',
         zIndex: 100,
     },
     listItemTitle: {

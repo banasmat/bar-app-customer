@@ -56,7 +56,7 @@ const MenuItemPanel = ({ menuItem, addToCart }) => {
                         precision={ 0 }
                         value={ menuItemCount }
                         size={ 1 }
-                        data-menuItemid={menuItem.id}
+                        data-menuitemid={menuItem.id}
                         onChange={handleCountInputChange}
                     />
                 </Grid>
@@ -67,7 +67,7 @@ const MenuItemPanel = ({ menuItem, addToCart }) => {
                         aria-label="add"
                         className={classes.margin}
                         onClick={handleAddToCartClick}
-                        data-menuItemid={menuItem.id}
+                        data-menuitemid={menuItem.id}
                     >
                         Dodaj do zamówienia
                     </Fab>

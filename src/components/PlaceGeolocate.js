@@ -34,7 +34,6 @@ export default function PlaceGeolocate(props){
         <Box className={classes.root}>
             <Button
                 variant="outlined"
-                color="white"
                 className={classes.button}
             >
                 <PlaceIcon className={classes.icon}/>

@@ -21,13 +21,6 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         alignItems: 'center',
     },
-    input: {
-        marginLeft: theme.spacing(1),
-        flex: 1,
-    },
-    iconButton: {
-        padding: 10,
-    },
     bottomBar: {
         top: 'auto',
         bottom: 0,
@@ -69,13 +62,11 @@ const Menu = ({ cart, getMenuData }) => {
     }
 
     return (
-        <React.Fragment>
-        <section className={classes.banner}>
+        <React.Fragment className={classes.root}>
             <Box p={4} pb={10}>
                 <MenuList/>
             </Box>
-        </section>
-        {bottomBar}
+            {bottomBar}
         </React.Fragment>
     );
 };

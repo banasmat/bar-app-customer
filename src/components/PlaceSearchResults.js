@@ -13,10 +13,11 @@ import {useHistory} from "react-router-dom";
 const useStyles = makeStyles(theme => ({
     root: {
         width: '100%',
-        maxWidth: 360,
         backgroundColor: theme.palette.background.paper,
-        position: 'absolute',
         zIndex: 100,
+    },
+    listItem: {
+        borderBottom: "1px solid rgba(0,0,0,.12)",
     },
     listItemTitle: {
         display: "block"
@@ -40,7 +41,7 @@ const PlaceSearchResults = ({ places }) => {
         return (
             <List className={classes.root}>
                 {places.map((place) => {
-                    return (<ListItem key={place.id} alignItems="flex-start" onClick={handlePlaceClick} data-id={place.id}>
+                    return (<ListItem key={place.id} alignItems="flex-start" onClick={handlePlaceClick} data-id={place.id} className={classes.listItem}>
                             <ListItemAvatar>
                                 <Avatar alt={place.name} src={place.imgUrl} />
                             </ListItemAvatar>
@@ -60,7 +61,6 @@ const PlaceSearchResults = ({ places }) => {
                                     </React.Fragment>
                                 }
                             />
-                            <Divider variant="inset" component="li" />
                         </ListItem>
                     )
                 })}
