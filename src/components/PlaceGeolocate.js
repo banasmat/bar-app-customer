@@ -10,10 +10,15 @@ const useStyles = makeStyles(theme => ({
         padding: '2px 4px',
         display: 'flex',
         alignItems: 'center',
-        textAlign: 'center'
+        textAlign: 'center',
+        color: '#fff'
     },
     button: {
         width: '100%',
+        color: '#fff',
+        borderColor: '#fff',
+        textTransform: 'capitalize',
+        fontSize: "18px"
     },
     icon: {
         padding: 10,

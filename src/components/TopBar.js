@@ -15,11 +15,13 @@ const useStyles = makeStyles(theme => ({
         flexGrow: 1,
     },
     bar: {
-        backgroundColor: theme.palette.success.dark,
+        backgroundColor: "rgb(77, 54, 25);", //https://www.color-hex.com/palettes/39589.png
     },
     title: {
         flexGrow: 1,
         marginRight: theme.spacing(2),
+        color: "#fff",
+        textDecoration: "none"
     },
 }));
 

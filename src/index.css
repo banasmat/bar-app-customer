@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic");
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400");
 
 html, body {
   height: 100%;
@@ -9,8 +9,10 @@ html, body {
   font-size: 100%;
 }
 body {
-  font-family: "Source Sans Pro",sans-serif;
+  font-family: "Roboto, Helvetica, sans-serif",sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+#root {
+  height: 100%;
+}

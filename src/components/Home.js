@@ -12,7 +12,7 @@ import {connect} from "react-redux";
 const useStyles = makeStyles(theme => ({
     banner: {
         backgroundAttachment:	"scroll",
-        backgroundColor:		theme.palette.success.main,
+        backgroundColor:		"#796856",
         // backgroundImage:		"url(images/overlay.png), url(images/main-banner.jpeg)",
         // backgroundPosition:	    "center",
         // backgroundRepeat:		"no-repeat",
@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
         color: "#fff",
         textAlign: "center",
         width: "100%",
-        height: "100%"
+        height: "100%",
     },
     searchResultsWrapper: {
         position: 'relative',
@@ -47,7 +47,7 @@ function Home({ clearPlacesData }){
             <Box p={4} pb={10}>
                 <Box my={4}>
                     <Typography variant="h5" gutterBottom>
-                        ZNAJDŹ LOKAL
+                        Znajdź lokal
                     </Typography>
                 </Box>
                 <PlaceSearchForm />
@@ -56,7 +56,7 @@ function Home({ clearPlacesData }){
                 </div>
                 <Box my={4}>
                     <Typography variant="h5" gutterBottom>
-                        LUB
+                        lub
                     </Typography>
                 </Box>
                 <PlaceGeolocate />

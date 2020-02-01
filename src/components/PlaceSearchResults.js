@@ -36,10 +36,11 @@ const PlaceSearchResults = ({ places }) => {
         history.push("/menu/" + e.currentTarget.dataset.id);
     };
 
-    return (
-        <List className={classes.root}>
-            {places.map((place) => {
-                return (<ListItem key={place.id} alignItems="flex-start" onClick={handlePlaceClick} data-id={place.id}>
+    if(places.length > 0){
+        return (
+            <List className={classes.root}>
+                {places.map((place) => {
+                    return (<ListItem key={place.id} alignItems="flex-start" onClick={handlePlaceClick} data-id={place.id}>
                             <ListItemAvatar>
                                 <Avatar alt={place.name} src={place.imgUrl} />
                             </ListItemAvatar>
@@ -62,9 +63,11 @@ const PlaceSearchResults = ({ places }) => {
                             <Divider variant="inset" component="li" />
                         </ListItem>
                     )
-            })}
-        </List>
-    );
+                })}
+            </List>
+        );
+    }
+    return (<React.Fragment/>);
 };
 
 export default connect(mapStateToProps)(PlaceSearchResults);
