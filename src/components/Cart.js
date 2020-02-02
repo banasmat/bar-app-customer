@@ -2,12 +2,8 @@ import React, {useEffect} from "react";
 import { connect } from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
 import Box from "@material-ui/core/Box";
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import Divider from '@material-ui/core/Divider';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import CartList from "./CartList";
+import PaymentButton from "./PaymentButton";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -34,11 +30,14 @@ const Cart = ({ cart }) => {
     const classes = useStyles();
 
     return (
-        <section className={classes.banner}>
+        <React.Fragment>
             <Box p={4} pb={10}>
                 <CartList/>
             </Box>
-        </section>
+            <Box p={4} pb={10}>
+                <PaymentButton/>
+            </Box>
+        </React.Fragment>
     );
 };
 
