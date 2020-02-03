@@ -1,5 +1,5 @@
-import { PLACES_DATA_LOADED, MENU_DATA_LOADED, ADD_CART_ITEM } from "../constants/action-types";
-import { API_PLACES, API_MENU } from "../constants/urls";
+import { PLACES_DATA_LOADED, MENU_DATA_LOADED, ADD_CART_ITEM, API_ERROR } from "../constants/action-types";
+import { API_PLACES, API_MENU, PAYMENT_REQUEST } from "../constants/urls";
 
 export function getPlacesData(searchValue) {
     return function(dispatch) {
@@ -27,5 +27,28 @@ export function addToCart(menuItem, count) {
             menuItem: menuItem,
             count: count
         } });
+    };
+}
+
+export function requestPayment(paymentData) {
+    return function(dispatch) {
+
+        return fetch(PAYMENT_REQUEST, {
+            // method: "POST", TODO uncomment when api is ready
+            // body: JSON.stringify(paymentData),
+            // headers: {
+            //     'Accept': 'application/json',
+            //     'Content-Type': 'application/json'
+            // },
+        })
+            .then(response => response.json())
+            .then(json => {
+                console.log(json);
+                if(json.status === "SUCCESS"){
+                    window.location.replace(json.redirectUri)
+                } else {
+                    dispatch({ type: API_ERROR, payload: json });
+                }
+            });
     };
 }

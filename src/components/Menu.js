@@ -53,7 +53,7 @@ const Menu = ({ cart, getMenuData }) => {
                             variant="extended"
                             color="secondary"
                         >
-                            Zamów ({cart.price / 100} zł)
+                            Zamów ({cart.priceTotal / 100} zł)
                         </Fab>
                     </Link>
                 {/*</Toolbar>*/}
@@ -62,12 +62,12 @@ const Menu = ({ cart, getMenuData }) => {
     }
 
     return (
-        <React.Fragment className={classes.root}>
+        <Box className={classes.root}>
             <Box p={4} pb={10}>
                 <MenuList/>
             </Box>
             {bottomBar}
-        </React.Fragment>
+        </Box>
     );
 };
 

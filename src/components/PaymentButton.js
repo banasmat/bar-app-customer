@@ -5,9 +5,9 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
+import { requestPayment } from "../actions/index";
 
 const useStyles = makeStyles(theme => ({
     paymentChoice: {
@@ -27,17 +27,21 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
+
 const mapStateToProps = state => {
     return { cart: state.cart };
 };
 
-
-const PaymentButton = ({ cart }) => {
+const PaymentButton = ({ cart, requestPayment }) => {
 
     const [value, setValue] = React.useState('payu');
 
     const handleChange = event => {
         setValue(event.target.value);
+    };
+
+    const handlePaymentButtonClick = e => {
+        requestPayment(cart);
     };
 
     const classes = useStyles();
@@ -72,7 +76,7 @@ const PaymentButton = ({ cart }) => {
                 </RadioGroup>
             </FormControl>
             <Box pt={4}>
-                <Button variant="contained" color="primary" className={classes.submitButton}>
+                <Button variant="contained" color="primary" disabled={cart.priceTotal <= 0} className={classes.submitButton} onClick={handlePaymentButtonClick}>
                     Zamów i zapłać
                 </Button>
             </Box>
@@ -80,4 +84,4 @@ const PaymentButton = ({ cart }) => {
     );
 };
 
-export default connect(mapStateToProps)(PaymentButton);
+export default connect(mapStateToProps, {requestPayment})(PaymentButton);

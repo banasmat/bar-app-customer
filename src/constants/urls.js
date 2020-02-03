@@ -1,5 +1,9 @@
 export const API_BASE = process.env.PUBLIC_URL + "/json"; //TODO http
 // export const API_PLACES = API_BASE + "/places";
 export const API_PLACES = API_BASE + "/places.json";
-// export const API_MENU = API_BASE + "/places";
+// export const API_MENU = API_BASE + "/menu/{placeId}";
 export const API_MENU = API_BASE + "/menu.json";
+// export const API_MENU = API_BASE + "/payment-request";
+export const PAYMENT_REQUEST = API_BASE + "/paymentRequest.json";
+// export const API_MENU = API_BASE + "/order-status/{orderId}";
+export const ORDER_STATUS = API_BASE + "/orderStatus.json";

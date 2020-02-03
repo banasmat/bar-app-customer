@@ -5,7 +5,7 @@ const initialState = {
     remoteMenuItems: [],
     cart: {
         items: [],
-        price: 0
+        priceTotal: 0
     },
 };
 
@@ -39,12 +39,13 @@ function rootReducer(state = initialState, action) {
                     ...state.cart.items,
                     [newCartItem.menuItem.id]: newCartItem
                 },
-                price: Object.values(cartItems).reduce((prev, curr) => {
+                priceTotal: Object.values(cartItems).reduce((prev, curr) => {
                     return prev + curr.menuItem.price * curr.count;
                 }, 0)
             }
         }
     }
+    //TODO API_ERROR
 
     return state;
 }

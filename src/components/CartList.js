@@ -40,7 +40,7 @@ const CartList = ({ cart }) => {
                     ))}
                     <TableRow>
                         <TableCell  className={classes.lastTableRow} align="right" colSpan={2}>Razem:</TableCell>
-                        <TableCell  className={classes.lastTableRow} align="right">{cart.price / 100} zł</TableCell>
+                        <TableCell  className={classes.lastTableRow} align="right">{cart.priceTotal / 100} zł</TableCell>
                     </TableRow>
                 </TableBody>
             </Table>

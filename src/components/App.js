@@ -9,11 +9,18 @@ import Home from '../components/Home';
 import Places from "./Places";
 import Menu from "./Menu";
 import Cart from "./Cart";
+import PaymentMock from "./PaymentMock";
+import OrderStatus from "./OrderStatus";
 
 const App = () => (
     <Router>
         <TopBar/>
         <Switch>
+            {/*--- dev only ---*/}
+            <Route path="/payment-mock">
+                <PaymentMock />
+            </Route>
+            {/*--- dev only end ---*/}
             <Route path="/lokale/:searchValue">
                 <Places />
             </Route>
@@ -23,6 +30,10 @@ const App = () => (
             <Route path="/cart">
                 <Cart />
             </Route>
+            <Route path="/order-status">
+                <OrderStatus />
+            </Route>
+
             <Route path="/">
                 <Home />
             </Route>
