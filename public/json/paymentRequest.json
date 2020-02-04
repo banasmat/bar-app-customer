@@ -2,5 +2,5 @@
   "status": "SUCCESS",
   "redirectUri": "/payment-mock",
   "orderId": "WZHF5FFDRJ140731GUEST000P01",
-  "extOrderId": "1234ABCD"
+  "paymentProviderOrderId": "1234ABCD"
 }

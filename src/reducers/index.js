@@ -1,4 +1,11 @@
-import { PLACES_DATA_LOADED, MENU_DATA_LOADED, ADD_CART_ITEM } from "../constants/action-types";
+import {
+    PLACES_DATA_LOADED,
+    MENU_DATA_LOADED,
+    ADD_CART_ITEM,
+    ORDER_PLACED,
+    ORDER_STATUS_CHECKED
+} from "../constants/action-types";
+import {ORDER_STATUS_NONE} from "../constants/order-status";
 
 const initialState = {
     remotePlaces: [],
@@ -7,6 +14,8 @@ const initialState = {
         items: [],
         priceTotal: 0
     },
+    currentOrderId: null,
+    orderStatus: ORDER_STATUS_NONE
 };
 
 function rootReducer(state = initialState, action) {
@@ -42,6 +51,21 @@ function rootReducer(state = initialState, action) {
                 priceTotal: Object.values(cartItems).reduce((prev, curr) => {
                     return prev + curr.menuItem.price * curr.count;
                 }, 0)
+            }
+        }
+    }
+    if (action.type === ORDER_PLACED) {
+        return {
+            ...state,
+            currentOrderId: state.currentOrderId = action.payload.orderId
+        }
+    }
+    if (action.type === ORDER_STATUS_CHECKED) {
+
+        if(action.payload.orderStatus !== state.orderStatus){
+            return {
+                ...state,
+                orderStatus: state.orderStatus = action.payload.orderStatus
             }
         }
     }

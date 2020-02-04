@@ -1,0 +1,1 @@
+export const ORDER_STATUS_CHECK_INTEVAL = 5000;
