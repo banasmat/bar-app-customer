@@ -4,7 +4,7 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import {checkOrderStatus, getMenuData} from "../actions/index";
 import {connect} from "react-redux";
-import {ORDER_STATUS_CHECK_INTEVAL} from "../constants/config";
+import {ORDER_STATUS_CHECK_INTERVAL} from "../constants/config";
 import {
     ORDER_STATUS_ACCEPTED, ORDER_STATUS_FINISHED,
     ORDER_STATUS_IN_PROGRESS,
@@ -33,7 +33,7 @@ function OrderStatus({orderId, orderStatus, checkOrderStatus}){
         //TODO ping backend for status until it changes
         setInterval(()=>{
             checkOrderStatus(orderId);
-        }, ORDER_STATUS_CHECK_INTEVAL)
+        }, ORDER_STATUS_CHECK_INTERVAL)
     });
 
     let text = '';

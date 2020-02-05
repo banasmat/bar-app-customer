@@ -1,1 +1,2 @@
-export const ORDER_STATUS_CHECK_INTEVAL = 5000;
+export const ORDER_STATUS_CHECK_INTERVAL = 5000;
+export const LOCAL_STORAGE_TTL = 10 * 60 * 1000;

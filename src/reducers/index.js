@@ -6,8 +6,9 @@ import {
     ORDER_STATUS_CHECKED
 } from "../constants/action-types";
 import {ORDER_STATUS_NONE} from "../constants/order-status";
+import {loadState, saveState} from "../store/localStorage";
 
-const initialState = {
+const initialState = loadState() || {
     remotePlaces: [],
     remoteMenuItems: [],
     cart: {
@@ -17,6 +18,7 @@ const initialState = {
     currentOrderId: null,
     orderStatus: ORDER_STATUS_NONE
 };
+
 
 function rootReducer(state = initialState, action) {
     if (action.type === PLACES_DATA_LOADED) {
@@ -70,6 +72,8 @@ function rootReducer(state = initialState, action) {
         }
     }
     //TODO API_ERROR
+
+
 
     return state;
 }
