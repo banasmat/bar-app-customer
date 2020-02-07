@@ -18,6 +18,16 @@ export function getPlacesData(searchValue) {
     };
 }
 
+export function getPlacesDataByGeolocation(lat, lon) {
+    return function(dispatch) {
+        return fetch(API_PLACES + "?lat=" + lat + "&lon=" + lon)
+            .then(response => response.json())
+            .then(json => {
+                dispatch({ type: PLACES_DATA_LOADED, payload: json });
+            });
+    };
+}
+
 export function getMenuData(placeId) {
     return function(dispatch) {
         return fetch(API_MENU + "?id=" + placeId)
