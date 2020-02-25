@@ -6,7 +6,7 @@ import {
     ORDER_PLACED,
     ORDER_STATUS_CHECKED
 } from "../constants/action-types";
-import {API_PLACES, API_MENU, PAYMENT_REQUEST, ORDER_STATUS} from "../constants/urls";
+import {API_PLACES, API_MENU, CREATE_ORDER, ORDER_STATUS} from "../constants/urls";
 
 export function getPlacesData(searchValue) {
     return function(dispatch) {
@@ -47,16 +47,19 @@ export function addToCart(menuItem, count) {
     };
 }
 
-export function requestPayment(paymentData) {
+export function requestPayment(cartData, placeData) {
     return function(dispatch) {
-
-        return fetch(PAYMENT_REQUEST, {
-            // method: "POST", TODO uncomment when api is ready
-            // body: JSON.stringify(paymentData),
-            // headers: {
-            //     'Accept': 'application/json',
-            //     'Content-Type': 'application/json'
-            // },
+        return fetch(CREATE_ORDER, {
+            method: "POST",
+            body: JSON.stringify({
+                'menuItems': cartData.items,
+                'priceTotal': cartData.priceTotal,
+                'placeId': placeData.id
+            }),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
         })
             .then(response => response.json())
             .then(json => {

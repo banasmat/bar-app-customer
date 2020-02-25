@@ -29,10 +29,13 @@ const useStyles = makeStyles(theme => ({
 
 
 const mapStateToProps = state => {
-    return { cart: state.cart };
+    return {
+        cart: state.cart,
+        place: state.currentPlaceData
+    };
 };
 
-const PaymentButton = ({ cart, requestPayment }) => {
+const PaymentButton = ({ cart, place, requestPayment }) => {
 
     const [value, setValue] = React.useState('payu');
 
@@ -41,7 +44,7 @@ const PaymentButton = ({ cart, requestPayment }) => {
     };
 
     const handlePaymentButtonClick = e => {
-        requestPayment(cart);
+        requestPayment(cart, place);
     };
 
     const classes = useStyles();

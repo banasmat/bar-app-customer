@@ -11,6 +11,7 @@ import {loadState, saveState} from "../store/localStorage";
 const initialState = loadState() || {
     remotePlaces: [],
     remoteMenuItems: [],
+    currentPlaceData: {},
     cart: {
         items: [],
         priceTotal: 0
@@ -30,7 +31,8 @@ function rootReducer(state = initialState, action) {
     if (action.type === MENU_DATA_LOADED) {
         return {
             ...state,
-            remoteMenuItems: state.remoteMenuItems = action.payload
+            remoteMenuItems: state.remoteMenuItems = action.payload.menuItems,
+            currentPlaceData: state.currentPlaceData = action.payload.place,
         }
     }
     if (action.type === ADD_CART_ITEM) {
