@@ -30,7 +30,7 @@ export function getPlacesDataByGeolocation(lat, lon) {
 
 export function getMenuData(placeId) {
     return function(dispatch) {
-        return fetch(API_MENU + "?id=" + placeId)
+        return fetch(API_MENU.replace('{placeId}', placeId))
             .then(response => response.json())
             .then(json => {
                 dispatch({ type: MENU_DATA_LOADED, payload: json });
@@ -52,7 +52,7 @@ export function requestPayment(cartData, placeData) {
         return fetch(CREATE_ORDER, {
             method: "POST",
             body: JSON.stringify({
-                'menuItems': cartData.items,
+                'orderItems': cartData.items,
                 'priceTotal': cartData.priceTotal,
                 'placeId': placeData.id
             }),
@@ -68,7 +68,7 @@ export function requestPayment(cartData, placeData) {
                         orderId: json.orderId,
                     } }); //TODO make sure dispatch is not async, also make sure to save orderId in local storage
 
-                    window.location.replace(json.redirectUri)
+                    window.location.replace(json.paymentUrl)
                 } else {
                     dispatch({ type: API_ERROR, payload: json });
                 }
@@ -78,7 +78,7 @@ export function requestPayment(cartData, placeData) {
 
 export function checkOrderStatus(orderId) {
     return function(dispatch) {
-        return fetch(ORDER_STATUS + "?id=" + orderId)
+        return fetch(ORDER_STATUS.replace('{orderId}', orderId))
             .then(response => response.json())
             .then(json => {
                 dispatch({ type: ORDER_STATUS_CHECKED, payload: json });

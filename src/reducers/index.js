@@ -29,6 +29,7 @@ function rootReducer(state = initialState, action) {
         }
     }
     if (action.type === MENU_DATA_LOADED) {
+        console.log(action.payload);
         return {
             ...state,
             remoteMenuItems: state.remoteMenuItems = action.payload.menuItems,
