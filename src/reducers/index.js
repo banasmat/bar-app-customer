@@ -66,11 +66,10 @@ function rootReducer(state = initialState, action) {
         }
     }
     if (action.type === ORDER_STATUS_CHECKED) {
-
-        if(action.payload.orderStatus !== state.orderStatus){
+        if(action.payload.status !== state.orderStatus){
             return {
                 ...state,
-                orderStatus: state.orderStatus = action.payload.orderStatus
+                orderStatus: state.orderStatus = action.payload.status
             }
         }
     }

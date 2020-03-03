@@ -1,8 +1,9 @@
 import React, {useEffect} from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
+import {ORDER_STATUS} from "../constants/urls";
+import {connect} from "react-redux";
+import {ORDER_STATUS_ACCEPTED} from "../constants/order-status";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -17,11 +18,30 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function PaymentMock(){
+const mapStateToProps = state => {
+    return {
+        orderId: state.currentOrderId
+    };
+};
+
+function PaymentMock({ orderId }){
 
     const classes = useStyles();
 
     useEffect(() => {
+
+        fetch(ORDER_STATUS.replace('{orderId}', orderId), {
+            method: "POST",
+            body: JSON.stringify({
+                'status': ORDER_STATUS_ACCEPTED
+            }),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        });
+
+
         setTimeout(function(){
             window.location.replace('/order-status');
         }, 5000);
@@ -38,3 +58,5 @@ export default function PaymentMock(){
         </Modal>
     );
 }
+
+export default connect(mapStateToProps)(PaymentMock);

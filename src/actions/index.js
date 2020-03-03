@@ -63,7 +63,7 @@ export function requestPayment(cartData, placeData) {
         })
             .then(response => response.json())
             .then(json => {
-                if(json.status === "SUCCESS"){
+                if(json.ack === "SUCCESS"){
                     dispatch({ type: ORDER_PLACED, payload: {
                         orderId: json.orderId,
                     } }); //TODO make sure dispatch is not async, also make sure to save orderId in local storage
