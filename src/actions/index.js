@@ -52,7 +52,7 @@ export function requestPayment(cartData, placeData) {
         return fetch(CREATE_ORDER, {
             method: "POST",
             body: JSON.stringify({
-                'orderItems': cartData.items,
+                'orderItems': Object.values(cartData.items),
                 'priceTotal': cartData.priceTotal,
                 'placeId': placeData.id
             }),
