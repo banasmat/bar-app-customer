@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import {checkOrderStatus, getMenuData} from "../actions/index";
+import {checkOrderStatus} from "../actions/index";
 import {connect} from "react-redux";
 import {ORDER_STATUS_CHECK_INTERVAL} from "../constants/config";
 import {
@@ -28,12 +28,18 @@ const mapStateToProps = state => {
 function OrderStatus({orderId, orderStatus, checkOrderStatus}){
 
     const classes = useStyles();
+    let checkStatusTimeout;
+
+    function checkStatus(){
+        checkStatusTimeout = checkStatusTimeout = setTimeout(()=>{
+            checkOrderStatus(orderId);
+            checkStatus();
+        }, ORDER_STATUS_CHECK_INTERVAL)
+    }
 
     useEffect(() => {
-        //TODO ping backend for status until it changes
-        setInterval(()=>{
-            checkOrderStatus(orderId);
-        }, ORDER_STATUS_CHECK_INTERVAL)
+        checkOrderStatus(orderId);
+        checkStatus();
     });
 
     let text = '';
@@ -55,6 +61,7 @@ function OrderStatus({orderId, orderStatus, checkOrderStatus}){
             break;
         case ORDER_STATUS_FINISHED:
             text = 'Odebrano zamówienie. Dziękujemy.';
+            clearTimeout(checkStatusTimeout);
             break;
     }
 

@@ -66,7 +66,7 @@ export function requestPayment(cartData, placeData) {
                 if(json.ack === "SUCCESS"){
                     dispatch({ type: ORDER_PLACED, payload: {
                         orderId: json.orderId,
-                    } }); //TODO make sure dispatch is not async, also make sure to save orderId in local storage
+                    } }); //TODO make sure dispatch is not async
 
                     window.location.replace(json.paymentUrl)
                 } else {

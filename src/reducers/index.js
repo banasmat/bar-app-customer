@@ -5,7 +5,7 @@ import {
     ORDER_PLACED,
     ORDER_STATUS_CHECKED
 } from "../constants/action-types";
-import {ORDER_STATUS_NONE} from "../constants/order-status";
+import {ORDER_STATUS_ACCEPTED, ORDER_STATUS_FINISHED, ORDER_STATUS_NONE} from "../constants/order-status";
 import {loadState, saveState} from "../store/localStorage";
 
 const initialState = loadState() || {
@@ -29,7 +29,6 @@ function rootReducer(state = initialState, action) {
         }
     }
     if (action.type === MENU_DATA_LOADED) {
-        console.log(action.payload);
         return {
             ...state,
             remoteMenuItems: state.remoteMenuItems = action.payload.menuItems,
@@ -67,6 +66,21 @@ function rootReducer(state = initialState, action) {
     }
     if (action.type === ORDER_STATUS_CHECKED) {
         if(action.payload.status !== state.orderStatus){
+            if(action.payload.status === ORDER_STATUS_ACCEPTED){
+                // If payment goes well, clear cart data (so it's cleared from local storage)
+                return {
+                    ...state,
+                    remotePlaces: [],
+                    remoteMenuItems: [],
+                    currentPlaceData: {},
+                    cart: {
+                        items: [],
+                        priceTotal: 0
+                    },
+                    orderStatus: state.orderStatus = action.payload.status
+                }
+            }
+
             return {
                 ...state,
                 orderStatus: state.orderStatus = action.payload.status
