@@ -1,4 +1,5 @@
-export const API_BASE = 'http://localhost:8000';
+// export const API_BASE = 'http://localhost:8000';
+export const API_BASE = 'https://bar-app-api.banasmatgmailcom.smarthost.pl';
 // export const API_BASE = process.env.PUBLIC_URL + "/json";
 export const API_PLACES = API_BASE + "/places";
 // export const API_PLACES = API_BASE + "/places.json";
