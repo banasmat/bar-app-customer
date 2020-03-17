@@ -99,7 +99,7 @@ function rootReducer(state = initialState, action) {
                 return {
                     ...state,
                     currentOrderId: null,
-                    orderStatus: ORDER_STATUS_NONE
+                    orderStatus: state.orderStatus = action.payload.status
                 }
             }
 

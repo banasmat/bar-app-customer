@@ -31,16 +31,18 @@ function OrderStatus({orderId, orderStatus, checkOrderStatus}){
     let checkStatusTimeout;
 
     function checkStatus(){
-        checkStatusTimeout = checkStatusTimeout = setTimeout(()=>{
-            checkOrderStatus(orderId);
-            checkStatus();
-        }, ORDER_STATUS_CHECK_INTERVAL)
+        if(orderStatus !== ORDER_STATUS_FINISHED && null !== orderId){
+            checkStatusTimeout = setTimeout(()=>{
+                checkOrderStatus(orderId);
+                checkStatus();
+            }, ORDER_STATUS_CHECK_INTERVAL)
+        }
     }
 
     useEffect(() => {
         checkOrderStatus(orderId);
         checkStatus();
-    });
+    }, []);
 
     let text = '';
     switch(orderStatus){
