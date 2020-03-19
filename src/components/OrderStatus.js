@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
@@ -11,10 +11,11 @@ import {
     ORDER_STATUS_NONE,
     ORDER_STATUS_ORDERED, ORDER_STATUS_READY
 } from "../constants/order-status";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles(theme => ({
     root: {
-
+        textAlign: 'center'
     }
 }));
 
@@ -30,8 +31,13 @@ function OrderStatus({orderId, orderStatus, checkOrderStatus}){
     const classes = useStyles();
     let checkStatusTimeout;
 
+    const [showBtn, setShowBtn] = useState(true);
+
     function checkStatus(){
+        clearTimeout(checkStatusTimeout);
         if(orderStatus !== ORDER_STATUS_FINISHED && null !== orderId){
+            setShowBtn(false);
+            checkOrderStatus(orderId);
             checkStatusTimeout = setTimeout(()=>{
                 checkOrderStatus(orderId);
                 checkStatus();
@@ -41,10 +47,10 @@ function OrderStatus({orderId, orderStatus, checkOrderStatus}){
 
     useEffect(() => {
         checkOrderStatus(orderId);
-        checkStatus();
     }, []);
 
     let text = '';
+    let okBtn = '';
     switch(orderStatus){
         case ORDER_STATUS_NONE:
             break;
@@ -53,13 +59,15 @@ function OrderStatus({orderId, orderStatus, checkOrderStatus}){
             break;
         case ORDER_STATUS_ACCEPTED:
             text = 'Zamówienie zostało przyjęte.';
+            if(showBtn){
+                okBtn = <Button variant="contained" color="primary" onClick={checkStatus}>Śledź status zamówienia</Button>; // Touch required to vibrate in web app
+            }
             break;
         case ORDER_STATUS_IN_PROGRESS:
             text = 'Zamówienie jest przygotowywane.';
             break;
         case ORDER_STATUS_READY:
             text = 'Zamówienie gotowe do odbioru.';
-            //TODO vibrate
             break;
         case ORDER_STATUS_FINISHED:
             text = 'Odebrano zamówienie. Dziękujemy.';
@@ -72,6 +80,9 @@ function OrderStatus({orderId, orderStatus, checkOrderStatus}){
             <Typography variant="h5" gutterBottom>
                 {text}
             </Typography>
+            <Box p={4} pb={10}>
+                {okBtn}
+            </Box>
         </Box>
     );
 }

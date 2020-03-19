@@ -32,7 +32,9 @@ function rootReducer(state = initialState, action) {
     if (action.type === PLACES_DATA_LOADED) {
         return {
             ...state,
-            remotePlaces: state.remotePlaces = action.payload
+            remotePlaces: state.remotePlaces = action.payload,
+            currentOrderId: null,
+            orderStatus: ORDER_STATUS_NONE
         }
     }
     if (action.type === MENU_DATA_LOADED) {
